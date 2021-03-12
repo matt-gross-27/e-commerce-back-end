@@ -1,43 +1,56 @@
-# e-commerce-back-end
+# e-commerce back end
 
-## User Story
+<div style="position: absolute; top: 22px; right: 50px">
 
-```
-AS A manager at an internet retail company
+![licence: MIT](https://img.shields.io/badge/license-MIT-blue)
+</div>
 
-I WANT a back end for my e-commerce website that uses the latest technologies
+## Description
+Need a back end for your online store? e-Commerce back end can handle product, tag and category relationships with api endpoints for creating, reading, updating and deleting data. Just connect this application to a MySQL database, add a front end, load in all your product data, and then start making sales!
 
-SO THAT my company can compete with other e-commerce companies
-```
 
-## Acceptance Criteria
+## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Database](#database)
+  - [API Routes](#API%20Routes)
+  - [Questions](#questions)
+  - [License](#license)
 
-```
-GIVEN a functional Express.js API
+<a href = "#installation"></a>
 
-WHEN I add my database name, MySQL username, and MySQL password to an environment variable file
-THEN I am able to connect to a database using Sequelize
+## Installation
+This application requires MySQL and node.js to run locally. You can connect to a MySQL database remotely as well. 
 
-WHEN I enter schema and seed commands
-THEN a development database is created and is seeded with test data
+- Clone this repository to your machine. 
+- Navigate to the root directory in your terminal. 
+- Run the command ```npm i```. 
+- If you plan to run the application locally, run ```touch .env```. 
+  - Open your .env file and add the following variables to configure your connection to your MySQL database.
+      ```
+        DB_NAME='ecommerce_db'
+        DB_USER='root'   <<< your MySQL username
+        DB_PW='secret'   <<< your MySQL password
+      ```
+  - Open the MySQL monitor by running ```npm run db``` 
+    - Enter your MySQL password.
+    - Run ```CREATE DATABASE ecommerce_db;``` 
+    - Then run ```quit``` to leave the mySQL monitor 
+- If you would like to test the application with dummy data:
+  - Run ```npm run seed``` from the command line. 
 
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
+- Run ```npm start``` to start your server.
 
-WHEN I open API GET routes in Insomnia Core for categories, products, or tags
-THEN the data for each of these routes is displayed in a formatted JSON
 
-WHEN I test API POST, PUT, and DELETE routes in Insomnia Core
-THEN I am able to successfully create, update, and delete data in my database
-```
+<a href = "#usage"></a>
 
+## Usage
+This application has no front end! You can use insomnia core or an API designer of your choosing to interact with the API endpoint the application provides. If you decide to use this back-end for your store, you will need to build and connect a front end.
 
 ## Database
-
-### `Models`
-
-#### `Category`
-
+### `Tables`
+#### `category`
 - id
   - Integer
   - Doesn't allow null values
@@ -48,8 +61,7 @@ THEN I am able to successfully create, update, and delete data in my database
   - Doesn't allow null values
   - Is Unique
 
-#### `Product`
-
+#### `product`
 - id
   - Integer
   - Doesn't allow null values
@@ -71,8 +83,7 @@ THEN I am able to successfully create, update, and delete data in my database
   - Integer
   - References the category model's id
 
-#### `Tag`
-
+#### `tag`
 - id
   - Integer
   - Doesn't allow null values
@@ -81,7 +92,7 @@ THEN I am able to successfully create, update, and delete data in my database
 - tag_name
   - String
 
-#### `ProductTag`
+#### `product_tag`
   - id
     - Integer
     - Doesn't allow null values
@@ -94,7 +105,7 @@ THEN I am able to successfully create, update, and delete data in my database
   - Integer
   - References the tag model's id
 
-### `Associations`
+### `Model Associations`
 
 - Product belongs to Category
 - Category has many Product.
@@ -104,3 +115,69 @@ THEN I am able to successfully create, update, and delete data in my database
 - Product belongs to many Tag models. 
 - Tag belongs to many Product models.
   - Using the ProductTag through model, allow products to have multiple tags and tags to have many products.
+
+## API Routes
+
+### ```Category Routes```
+- GET /api/catagories
+  - returns all catagories with associated products
+- GET /api/catagories/:id
+  - returns one category by id with associated products
+- POST /api/catagories
+  - create a new product category
+  - expects req.body == { "category_name": "STRING" }
+- PUT /api/catagories/:id
+  - update an existing category by id
+  - expects req.body == { "category_name": "STRING" }
+- DELETE /api/catagories/:id
+  - Delete a category by id
+
+### ```Tag Routes```
+- GET /api/tags
+  - returns all tags with associated products
+- GET /api/tags/:id
+  - returns one tag by id with associated products
+- POST /api/tags
+  - create a new product tag
+  - expects req.body == { "tag_name": "STRING" }
+- PUT /api/tags/:id
+  - update an existing product tag
+  - expects req.body == { "tag_name": "STRING" }
+- DELETE /api/tags/:id
+  - Delete a tag by id
+
+### ```Product Routes```
+- GET /api/products
+  - returns all products with associated category and tags
+- GET /api/products/:id
+  - returns one product by id with associated category and tags
+- POST /api/products
+  - create a new product with associated category and tags
+  - expects req.body...
+    ```json
+      {
+        "product_name": "STRING",
+        "price": DECIMAL,
+        "stock": INTEGER,
+        "category_id": INTEGER,
+        "tagIds": [INTEGER, INTEGER, ...]
+      }
+    ```
+- PUT /api/products/:id
+  - update a product by id
+  - expects same req.body
+- DELETE /api/products/:id
+  - delete a product by id
+
+
+## Questions
+
+- Feel free to reach out with any questions
+
+### Contact information:
+- GitHub: [matt-gross-27](https://www.github.com/matt-gross-27)
+- Email: [mbgross111@gmail.com](mailto:mbgross111@gmail.com)
+
+
+## License
+- MIT
