@@ -48,6 +48,8 @@ This application requires MySQL and node.js to run locally. You can connect to a
 ## Usage
 This application has no front end! You can use insomnia core or an API designer of your choosing to interact with the API endpoint the application provides. If you decide to use this back-end for your store, you will need to build and connect a front end.
 
+![screenshot of insomnia core](./assets/screenshot.png)
+
 ## Database
 ### `Tables`
 #### `category`
