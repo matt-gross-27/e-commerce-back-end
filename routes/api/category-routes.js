@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       { model: Product }
     ]
   })
-    .then(dbCategoryData => res.json(dbCategoryData))
+    .then(dbCategoryData => res.status(200).json(dbCategoryData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
         res.status(404).json({ message: 'No category with that id found' });
         return
       }
-      res.json(dbCategoryData);
+      res.status(200).json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
   Category.create({
     category_name: req.body.category_name
   })
-  .then(dbCategoryData => res.json(dbCategoryData))
+  .then(dbCategoryData => res.status(200).json(dbCategoryData))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -71,7 +71,7 @@ router.put('/:id', (req, res) => {
         res.status(404).json({ message: 'No category with that id found' });
         return
       }
-      res.json(dbCategoryData);
+      res.status(200).json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
@@ -91,7 +91,7 @@ router.delete('/:id', (req, res) => {
         res.status(404).json({ message: 'No category with that id found' });
         return
       }
-      res.json(dbCategoryData);
+      res.status(200).json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
