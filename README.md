@@ -14,36 +14,36 @@ Need a back end for your online store? e-Commerce back end can handle product, t
   - [Installation](#installation)
   - [Usage](#usage)
   - [Database](#database)
-  - [API Routes](#API%20Routes)
+  - [API_Routes](#API_Routes)
   - [Questions](#questions)
   - [License](#license)
 
 <a href = "#installation"></a>
 
 ## Installation
-This application requires MySQL and node.js to run locally. You can connect to a MySQL database remotely as well. 
+This application requires MySQL and node.js to run locally. You can connect to a MySQL database remotely as well.
 
 - Clone this repository to your machine. 
-- Navigate to the root directory in your terminal. 
-- Run the command ```npm i```. 
-- If you plan to run the application locally, run ```touch .env```. 
-  - Open your .env file and add the following variables to configure your connection to your MySQL database.
+- Navigate to the root directory in your terminal
+- Run the command ```npm i``` to install all dependencies
+- If you plan to run the application locally:
+  - run ```touch .env``` then:
+    - Open your .env file ```open .env``` and add the following variables to configure the connection to your MySQL database
       ```
         DB_NAME='ecommerce_db'
         DB_USER='root'   <<< your MySQL username
         DB_PW='secret'   <<< your MySQL password
       ```
-  - Open the MySQL monitor by running ```npm run db``` 
-    - Enter your MySQL password.
-    - Run ```CREATE DATABASE ecommerce_db;``` 
-    - Then run ```quit``` to leave the mySQL monitor 
-- If you would like to test the application with dummy data:
-  - Run ```npm run seed``` from the command line. 
+  - On first use:
+    - Open the MySQL monitor (```npm run db```) -OR- (```mysql -u root -p```)
+      - Enter your MySQL password.
+      - To create your ecommerce_db database
+        - Run ```source db/schema.sql```
+      - Then run ```quit``` to leave the mySQL monitor 
+- If you would like to test the application with dummy data
+- Run ```npm run seed``` from the command line
 
-- Run ```npm start``` to start your server.
-
-
-<a href = "#usage"></a>
+- Run ```npm start``` to start your server
 
 ## Usage
 This application has no front end! You can use insomnia core or an API designer of your choosing to interact with the API endpoint the application provides. If you decide to use this back-end for your store, you will need to build and connect a front end.
@@ -118,7 +118,7 @@ This application has no front end! You can use insomnia core or an API designer 
 - Tag belongs to many Product models.
   - Using the ProductTag through model, allow products to have multiple tags and tags to have many products.
 
-## API Routes
+## API_Routes
 
 ### ```Category Routes```
 - GET /api/catagories
