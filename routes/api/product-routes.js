@@ -17,8 +17,9 @@ router.get('/', (req, res) => {
         through: ProductTag,
         attributes: ['tag_name'],
         as: 'product_tags',
-      }
-    ]
+      },
+    ],
+    order: [['id', 'DESC']]
   })
     .then(dbProductData => {
       res.status(200).json(dbProductData);

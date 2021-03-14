@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
         as: 'tagged_products',
         through: ProductTag
       }
-    ]
+    ],
+    order: [['id', 'DESC']]
   })
     .then(dbTagData => res.status(200).json(dbTagData))
     .catch(err => {

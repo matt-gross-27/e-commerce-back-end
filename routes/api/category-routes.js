@@ -9,7 +9,8 @@ router.get('/', (req, res) => {
   Category.findAll({
     include: [
       { model: Product }
-    ]
+    ],
+    order: [['id', 'DESC']]
   })
     .then(dbCategoryData => res.status(200).json(dbCategoryData))
     .catch(err => {
