@@ -53,7 +53,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
-  // expects req.body == { "tag_name" = "$$$" }
+  // expects req.body == { "tag_name": "STRING" }
   Tag.create({
     tag_name: req.body.tag_name
   })
@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
-  // expects req.body == { "tag_name":"$$$" }
+  // expects req.body == { "tag_name": "STRING" }
   Tag.update({
     tag_name: req.body.tag_name
   },
